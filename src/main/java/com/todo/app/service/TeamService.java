@@ -2,24 +2,10 @@ package com.todo.app.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.todo.app.entity.Team;
-import com.todo.app.repository.TeamRepository;
 
-import lombok.RequiredArgsConstructor;
-
-// チームサービス
-@Service
-@RequiredArgsConstructor
-public class TeamService {
-	private final TeamRepository teamRepository;
-
-	public List<Team> findAll() {
-		return   teamRepository.findAll();
-	}
+public interface TeamService {
+	public List<Team> findAll();
 	
-	public Team findById(Long id) {
-		return teamRepository.findById(id).orElse(null);
-	}
+	public Team findById(Long id);
 }

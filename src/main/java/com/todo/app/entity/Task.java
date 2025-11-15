@@ -17,9 +17,9 @@ import lombok.Data;
 
 // TODOエンティティ
 @Entity
-@Table(name="todos")
+@Table(name="tasks")
 @Data
-public class Todo {
+public class Task {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -37,6 +37,6 @@ public class Todo {
 	private User user;
 
 	@OneToMany
-	@JoinColumn(name="todo_id")
+	@JoinColumn(name="task_id")
 	private List<Comment> comments;
 }

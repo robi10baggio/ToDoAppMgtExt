@@ -21,19 +21,19 @@ import com.todo.app.entity.User;
 import com.todo.app.form.LoginForm;
 import com.todo.app.form.RegisterForm;
 import com.todo.app.model.Account;
-import com.todo.app.service.TeamService;
-import com.todo.app.service.UserService;
+import com.todo.app.service.TeamServiceImpl;
+import com.todo.app.service.UserServiceImpl;
 
 @Controller
 public class LoginController {
 	private final Account account;
 	
-	private final UserService userService;
+	private final UserServiceImpl userService;
 	
-	private final TeamService teamService;
+	private final TeamServiceImpl teamService;
 	
 	// コンストラクタinjection
-	public LoginController(UserService userService, TeamService teamService, Account account) {
+	public LoginController(UserServiceImpl userService, TeamServiceImpl teamService, Account account) {
 		this.userService = userService;
 		this.teamService = teamService;
 		this.account = account;
@@ -50,7 +50,7 @@ public class LoginController {
 	
 	// ログイン画面を表示
 	@GetMapping({ "/", "/login", "/logout" })
-	public String loginDisplay(
+	public String showLoginPage(
 			LoginForm loginForm,
 			@RequestParam(name = "error", defaultValue = "") String error,
 			HttpSession session,
@@ -67,7 +67,7 @@ public class LoginController {
 
 	// ログインを実行
 	@PostMapping("/login")
-	public String login(
+	public String loginUser(
 			@Validated LoginForm loginForm,
 			BindingResult bindingResult,
 			RedirectAttributes redirectAttribute,
@@ -90,27 +90,27 @@ public class LoginController {
 		return "redirect:/todo/list";
 	}
 	
-	@GetMapping("/register")
-	public String registerDisplay(
+	@GetMapping("/regist")
+	public String showRegistForm(
 			RegisterForm registerForm,
 			Model model) {
 		model.addAttribute("teamMenu", getTeamsMenu());
-		return "register";
+		return "regist";
 		
 	}
 	
-	@PostMapping("/register")
-	public String register(
+	@PostMapping("/regist")
+	public String registUser(
 			@Validated RegisterForm registerForm,
 			BindingResult bindingResult,
 			RedirectAttributes redirectAttribute,
 			Model model) {
 		if (bindingResult.hasErrors()) {
-			return "register";
+			return "regist";
 		}
 		if (!registerForm.getPassword().equals(registerForm.getCheckPassword())) {
 			model.addAttribute("message", "パスワードが一致しません。");
-			return "register";
+			return "regist";
 		}
 		User user = new User();
 		user.setUserId(registerForm.getUserId());
@@ -122,7 +122,7 @@ public class LoginController {
 			userService.regist(user);
 		} catch (DataIntegrityViolationException e) {
 			model.addAttribute("message", "既にユーザIDは登録されています。");
-			return "register";
+			return "regist";
 		}
 		return "redirect:/login";
 		

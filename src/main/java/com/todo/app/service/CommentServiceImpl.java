@@ -7,11 +7,11 @@ import com.todo.app.repository.CommentRepository;
 
 // コメントサービス
 @Service
-public class CommentService {
+public class CommentServiceImpl implements CommonService {
 
 	private final CommentRepository commentRepository;
 	
-	public CommentService(CommentRepository commentRepository) {
+	public CommentServiceImpl(CommentRepository commentRepository) {
 		this.commentRepository = commentRepository;
 	}
 

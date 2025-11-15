@@ -4,7 +4,7 @@ import lombok.Data;
 
 // Todo検索フォーム
 @Data
-public class TodoSearchForm {
+public class TaskSearchForm {
 	private String keyword;
 	private Long userId;
 	private String userName;
