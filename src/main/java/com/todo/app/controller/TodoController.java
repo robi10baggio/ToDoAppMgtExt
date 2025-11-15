@@ -1,6 +1,7 @@
 package com.todo.app.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,7 +87,7 @@ public class TodoController {
 				CommentForm commForm = new CommentForm();
 				commForm.setComment(comment.getComment());
 				commForm.setUserName(userService.findById(comment.getUserId()).getUserName());
-				commForm.setPostDate(comment.getPostDate());
+				commForm.setPostDateTime(comment.getPostDateTime());
 				commForms.add(commForm);
 			}
 			
@@ -114,7 +115,7 @@ public class TodoController {
 				CommentForm commForm = new CommentForm();
 				commForm.setComment(comment.getComment());
 				commForm.setUserName(userService.findById(comment.getUserId()).getUserName());
-				commForm.setPostDate(comment.getPostDate());
+				commForm.setPostDateTime(comment.getPostDateTime());
 				commForms.add(commForm);
 			}
 			
@@ -203,15 +204,7 @@ public class TodoController {
 			TaskForm taskForm, 
 			@Validated TaskSearchForm taskSearchForm, 
 			Model model) {
-		Long userId = null;
-		if (!taskSearchForm.getUserName().isEmpty()) { 
-			User user = userService.findByUserName(taskSearchForm.getUserName());
-		
-			if (user != null) {
-				userId = user.getId();
-			}
-		}
-		taskSearchForm.setUserId(userId);
+
 		User user = userService.findById(account.getUserId());
     	Long teamId = user.getTeam().getId();
 		List<Task> list = taskService.searchIncomplete(teamId, taskSearchForm);
@@ -231,7 +224,7 @@ public class TodoController {
 		commentObj.setComment(comment);
 		commentObj.setTaskId(id);
 		commentObj.setUserId(account.getUserId());
-		commentObj.setPostDate(LocalDate.now());
+		commentObj.setPostDateTime(LocalDateTime.now());
 		
 		commentService.add(commentObj);
 		return "redirect:/todo/list";

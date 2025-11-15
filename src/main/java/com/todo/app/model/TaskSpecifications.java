@@ -7,8 +7,8 @@ import jakarta.persistence.criteria.JoinType;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import com.todo.app.entity.Team;
 import com.todo.app.entity.Task;
+import com.todo.app.entity.Team;
 import com.todo.app.entity.User;
 
 // Todo用のSpecificationクラス
@@ -20,9 +20,8 @@ public class TaskSpecifications {
 	public static Specification<Task> userIdIs(Long userId) {
 		return (root, query, cb) -> {
 			Join<Task, User> userJoin = root.join("user", JoinType.INNER);
-            Join<User, Team> grandChildUserJoin = userJoin.join("team", JoinType.LEFT);
-
-			return cb.equal(grandChildUserJoin.get("id"), userId);
+            
+			return cb.equal(userJoin.get("id"), userId);
 		};
 	}
 	

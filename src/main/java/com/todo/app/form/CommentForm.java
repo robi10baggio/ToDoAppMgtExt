@@ -1,6 +1,6 @@
 package com.todo.app.form;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -10,5 +10,5 @@ public class CommentForm {
 	private Long id;
 	private String comment;
 	private String userName;
-	private LocalDate postDate;
+	private LocalDateTime postDateTime;
 }
