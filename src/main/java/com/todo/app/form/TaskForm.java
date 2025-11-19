@@ -8,7 +8,6 @@ import jakarta.validation.constraints.Size;
 
 import lombok.Data;
 
-// TODOフォーム
 @Data
 public class TaskForm {
 	private Long id;
@@ -23,7 +22,7 @@ public class TaskForm {
 	
 	private Long userId;
 	private String userName;
-	
+
 	private String teamName;
 	
 	private List<CommentForm> comments;

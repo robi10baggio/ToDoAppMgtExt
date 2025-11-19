@@ -1,5 +1,7 @@
 package com.todo.app.service;
 
+import java.util.List;
+
 import jakarta.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -19,8 +21,20 @@ public class UserServiceImpl implements UserService {
 		return loginRepository.findByUserIdAndPassword(userName, password);
 	}
 	
-	public User findById(Long id) {
+	public List<User> findAll() {
+		return   loginRepository.findAll();
+	}
+	
+	public User findById(long id) {
 		return loginRepository.findById(id).orElse(null);
+	}
+	
+	public List<User> findAllByOrderById() {
+		return loginRepository.findAllByOrderById();
+	}
+	
+	public List<User> findByTeamId(long teamId) {
+		return loginRepository.findByTeamId(teamId);
 	}
 	
 	public User findByUserName(String userName) {
@@ -30,5 +44,15 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public void regist(User user) {
 		loginRepository.save(user);
+	}
+	
+	@Transactional
+	public void update(User user) {
+		loginRepository.save(user);
+	}
+	
+	@Transactional
+	public void delete(long id) {
+		loginRepository.deleteById(id);
 	}
 }

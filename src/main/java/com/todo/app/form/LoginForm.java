@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Size;
 
 import lombok.Data;
 
-// ログインフォーム
 @Data
 public class LoginForm {
 	@NotEmpty
