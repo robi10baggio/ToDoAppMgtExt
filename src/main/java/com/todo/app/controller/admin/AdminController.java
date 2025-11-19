@@ -33,7 +33,7 @@ public class AdminController {
 			LoginForm loginForm,
 			Model model) {
 		// 管理者画面の表示ロジックをここに実装
-		return "admin/login";
+		return "/admin/login";
 	}
 
 	// ログインを実行
