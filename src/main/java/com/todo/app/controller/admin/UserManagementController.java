@@ -82,7 +82,7 @@ public class UserManagementController {
 	public String showRegistForm(
 			UserForm userForm,
 			Model model) {
-		model.addAttribute("teammenu", getTeamsMenu());
+		model.addAttribute("teamMenu", getTeamsMenu());
 		return "/admin/add-user";
 	}
 	
@@ -93,9 +93,11 @@ public class UserManagementController {
 			RedirectAttributes redirectAttribute,
 			Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("teamMenu", getTeamsMenu());
 			return "/admin/add-user";
 		}
 		if (!userForm.getPassword().equals(userForm.getCheckPassword())) {
+			model.addAttribute("teamMenu", getTeamsMenu());
 			model.addAttribute("message", "パスワードが一致しません。");
 			return "/admin/add-user";
 		}
@@ -108,6 +110,7 @@ public class UserManagementController {
 		try {
 			userService.regist(user);
 		} catch (DataIntegrityViolationException e) {
+			model.addAttribute("teamMenu", getTeamsMenu());
 			model.addAttribute("message", "既にユーザIDは登録されています。");
 			return "/admin/add-user";
 		}

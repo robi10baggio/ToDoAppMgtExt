@@ -18,13 +18,13 @@ import com.todo.app.service.UserService;
 @RequestMapping("/admin")
 public class AdminController {
 
-	private final Account admin;
+	private final Account account;
 
 	private final UserService userService;
 
-	public AdminController(UserService userService, Account admin) {
+	public AdminController(UserService userService, Account account) {
 		this.userService = userService;
-		this.admin = admin;
+		this.account= account;
 	}
 	
 	// 管理者ログインを表示
@@ -54,9 +54,10 @@ public class AdminController {
 			return "admin/login";
 		}
 		// セッション管理されたアカウント情報に名前をセット
-		admin.setUserId(user.getId());
-		admin.setUserName(user.getUserName());
-		admin.setTeamName(user.getTeam().getTeamName());
+		account.setUserId(user.getId());
+		account.setUserName(user.getUserName());
+		account.setRole(user.getRole());
+		account.setTeamName(user.getTeam().getTeamName());
 
 		// 「/todo」へのリダイレクト
 		return "redirect:/admin/teams-dashboard";

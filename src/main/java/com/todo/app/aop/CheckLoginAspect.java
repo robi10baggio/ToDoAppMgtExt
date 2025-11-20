@@ -33,12 +33,12 @@ public class CheckLoginAspect {
 	}
 	
 	// 未ログインの場合管理者ログインページにリダイレクト
-	@Around("execution(* com.todo.app.admin.controller.*ManagementController.*(..))")
+	@Around("execution(* com.todo.app.controller.admin.*ManagementController.*(..))")
 	public Object checkAdminLogin(ProceedingJoinPoint jp) throws Throwable {
 
 		if (account == null || account.getUserName() == null
-				|| account.getUserName().length() == 0) {
-			System.err.println("ログインしていません!");
+				|| account.getUserName().length() == 0 || account.getRole() != 1) {
+			System.err.println("管理者アカウントでログインしていません!");
 			// リダイレクト先を指定する
 			// パラメータを渡すことでログインControllerで
 			// 個別のメッセージをThymeleafに渡すことも可能

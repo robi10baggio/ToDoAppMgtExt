@@ -81,6 +81,7 @@ public class LoginController {
 		// セッション管理されたアカウント情報に名前をセット
 		account.setUserId(user.getId());
 		account.setUserName(user.getUserName());
+		account.setRole(user.getRole());
 		Team team = teamService.findById(user.getTeam().getId());
 		account.setTeamName(team.getTeamName());
 		
