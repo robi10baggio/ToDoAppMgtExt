@@ -11,7 +11,6 @@ import jakarta.persistence.Table;
 
 import lombok.Data;
 
-// ユーザーエンティティ
 @Entity
 @Table(name="users")
 @Data
@@ -27,6 +26,12 @@ public class User {
 	private String userName;
 	
 	private String password;
+	
+	private int role;
+	
+	public boolean isAdmin() {
+		return this.role == 1;
+	}
 	
 	@ManyToOne
 	@JoinColumn(name="team_id")

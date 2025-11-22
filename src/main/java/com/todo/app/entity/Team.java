@@ -9,7 +9,6 @@ import jakarta.persistence.Table;
 
 import lombok.Data;
 
-// チームエンティティ
 @Entity
 @Table(name="teams")
 @Data
@@ -20,6 +19,7 @@ public class Team {
 	
 	@Column(name="team_name") 
 	private String teamName;
+	
+	private String description;
 
 }
-

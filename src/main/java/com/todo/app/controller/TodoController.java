@@ -66,6 +66,20 @@ public class TodoController {
 		return this.account;
     }
     
+	// ユーザーリスト取得
+    public Map<Long,String> getUserList() {
+		User user = userService.findById(account.getUserId());
+		Long teamId = user.getTeam().getId();
+		List<User> userList = userService.findByTeamId(teamId);
+		
+		// ユーザーIDとユーザー名のMapを作成
+		Map<Long,String> userMap = new HashMap<>();
+		for (User u:userList) {
+			userMap.put(u.getId(),u.getUserName());
+		}
+		return userMap;
+	}
+    
     // リスト更新
     private void updateList(List<Task> list, List<Task> doneList, Model model) {
 		List<TaskForm> forms = new ArrayList<>();
@@ -126,6 +140,7 @@ public class TodoController {
 		model.addAttribute("doneTodos",doneForms);
 		model.addAttribute("statusMenu", getStatusMenu());
 		model.addAttribute("account", getAccount());
+		model.addAttribute("userList",getUserList());
     }
     
     // 一覧表示

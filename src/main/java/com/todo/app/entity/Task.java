@@ -15,7 +15,6 @@ import jakarta.persistence.Table;
 
 import lombok.Data;
 
-// TODOエンティティ
 @Entity
 @Table(name="tasks")
 @Data

@@ -11,7 +11,6 @@ import jakarta.persistence.Table;
 
 import lombok.Data;
 
-// コメントエンティティ
 @Entity
 @Table(name="comments")
 @Data
