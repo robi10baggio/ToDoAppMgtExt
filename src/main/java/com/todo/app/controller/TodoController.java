@@ -140,6 +140,7 @@ public class TodoController {
 		model.addAttribute("doneTodos",doneForms);
 		model.addAttribute("statusMenu", getStatusMenu());
 		model.addAttribute("account", getAccount());
+		model.addAttribute("userList",getUserList());
     }
     
     // 一覧表示
@@ -154,7 +155,6 @@ public class TodoController {
 		List<Task> doneList = taskService.selectComplete(teamId);
 		updateList(list, doneList, model);
 		
-		model.addAttribute("userList", getUserList());
 		return "Todo-list";
 	}
 	

@@ -25,24 +25,28 @@
 						<th>削除</th>
 					</tr>
 					<tr th:each="teamForm : ${teamList}" th:object="${teamForm}">
-                        <form th:action="@{/admin/teams/update-team/{id}(id=*{id})}" method="post">
-                            <td><input type="text" name="teamName" th:value="*{teamName}"><span th:errors="*{teamName}" th:class="error"></span></td>
-                            <td><textarea name="description" th:text="*{description}" rows="5" cols="40"></textarea><span th:errors="*{description}" th:class="error"></span> </td>
-                            <td>
-                                <ul>
-                                    <li th:each="member : *{members}" th:text="${member.userName}"></li>
-                                </ul>       
-                            </td>
-                            <td>
-                             	<button type="submit">更新</button>
-                            </td>
-                        </form>
-                        <td>
-                            <form th:action="@{/admin/delete-team/{id}(id=*{id})}" method="post">
-                           		<button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
-                         	</form>
-                        </td>
-					
+                    	<td>
+						<form th:action="@{/admin/update-team/{id}(id=*{id})}" method="post">
+							<input type="text" name="teamName" th:value="*{teamName}"><span th:errors="*{teamName}" th:class="error"></span>
+					</td>
+                 	<td>
+						<textarea name="description" th:text="*{description}" rows="5" cols="40"></textarea><span th:errors="*{description}" th:class="error"></span>
+					</td>
+            		<td>
+                 		<ul>
+                 			<li th:each="member : *{members}" th:text="${member.userName}"></li>
+                    	</ul>       
+                  	</td>
+                	<td>
+                  		<button type="submit">更新</button>
+					</form>
+                   	</td>
+                       
+                   	<td>
+                     	<form th:action="@{/admin/delete-team/{id}(id=*{id})}" method="post">
+                        	<button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
+                      	</form>
+                   	</td>
 				</table>
 				<span th:text="${deleteError}" th:class="error"></span>
 			</div>
