@@ -78,15 +78,15 @@ public class UserManagementController {
 		return "/admin/users-dashboard";
 	}
 
-	@GetMapping("/add-user")
+	@GetMapping("/regist-user")
 	public String showRegistForm(
 			UserForm userForm,
 			Model model) {
 		model.addAttribute("teamMenu", getTeamsMenu());
-		return "/admin/add-user";
+		return "/admin/regist-user";
 	}
 	
-	@PostMapping("/add-user")
+	@PostMapping("/regist-user")
 	public String registUser(
 			@Validated UserForm userForm,
 			BindingResult bindingResult,
@@ -94,12 +94,12 @@ public class UserManagementController {
 			Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("teamMenu", getTeamsMenu());
-			return "/admin/add-user";
+			return "/admin/regist-user";
 		}
 		if (!userForm.getPassword().equals(userForm.getCheckPassword())) {
 			model.addAttribute("teamMenu", getTeamsMenu());
 			model.addAttribute("message", "パスワードが一致しません。");
-			return "/admin/add-user";
+			return "/admin/regist-user";
 		}
 		User user = new User();
 		user.setUserId(userForm.getUserId());
@@ -112,7 +112,7 @@ public class UserManagementController {
 		} catch (DataIntegrityViolationException e) {
 			model.addAttribute("teamMenu", getTeamsMenu());
 			model.addAttribute("message", "既にユーザIDは登録されています。");
-			return "/admin/add-user";
+			return "/admin/regist-user";
 		}
 		return "redirect:/admin/users-dashboard";
 		

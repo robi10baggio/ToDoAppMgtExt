@@ -58,19 +58,19 @@ public class TeamManagementController {
 		
 	}
 	
-	@GetMapping("/add-team")
-	public String showAddTeamForm(
+	@GetMapping("/regist-team")
+	public String showRegistTeamForm(
 			TeamForm teamForm,
 			Model model) {
 		
 		List<User> allUsers = userService.findAll();
 		model.addAttribute("allUsers", allUsers);
 		// ダッシュボードの表示ロジックをここに実装
-		return "/admin/add-team";
+		return "/admin/regist-team";
 		
 	}
-	@PostMapping("/add-team")
-	public String addTeam(
+	@PostMapping("/regist-team")
+	public String registTeam(
 			@Validated TeamForm teamForm,
 			BindingResult bindingResult,
 			RedirectAttributes redirectAttribute,
@@ -78,7 +78,7 @@ public class TeamManagementController {
 
 		//バリデーションチェック
 		if (bindingResult.hasErrors()) {
-			return "/admin/add-team";
+			return "/admin/regist-team";
 		}
 		Team team = new Team();
 		team.setTeamName(teamForm.getTeamName());
