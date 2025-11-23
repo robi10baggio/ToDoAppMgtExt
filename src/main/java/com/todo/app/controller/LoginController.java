@@ -39,7 +39,7 @@ public class LoginController {
 	
     public Map<Integer, String> getTeamsMenu() {
 		Map<Integer, String> teamMap = new HashMap<>();
-		List<Team> teams = teamService.findAll();
+		List<Team> teams = teamService.findAllByOrderById();
 		for (Team team:teams) {
 			teamMap.put((int) team.getId(), team.getTeamName());
 		}

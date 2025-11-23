@@ -63,7 +63,7 @@ public class TeamManagementController {
 			TeamForm teamForm,
 			Model model) {
 		
-		List<User> allUsers = userService.findAll();
+		List<User> allUsers = userService.findAllByOrderById();
 		model.addAttribute("allUsers", allUsers);
 		// ダッシュボードの表示ロジックをここに実装
 		return "/admin/regist-team";

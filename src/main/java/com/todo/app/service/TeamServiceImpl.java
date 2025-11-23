@@ -17,11 +17,7 @@ public class TeamServiceImpl implements TeamService {
 	public TeamServiceImpl(TeamRepository teamRepository) {
 		this.teamRepository = teamRepository;
 	}
-	
-	public List<Team> findAll() {
-		return   teamRepository.findAll();
-	}
-	
+
 	public List<Team> findAllByOrderById() {
 		return teamRepository.findAllByOrderById();
 	}

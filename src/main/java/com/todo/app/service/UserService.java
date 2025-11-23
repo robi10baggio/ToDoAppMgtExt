@@ -13,8 +13,6 @@ public interface UserService {
 	
 	public User findByUserName(String userName);
 	
-	public List<User> findAll();
-	
 	public List<User> findAllByOrderById();
 
 	public void regist(User user) ;

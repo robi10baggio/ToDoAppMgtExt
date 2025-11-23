@@ -21,10 +21,6 @@ public class UserServiceImpl implements UserService {
 		return loginRepository.findByUserIdAndPassword(userName, password);
 	}
 	
-	public List<User> findAll() {
-		return   loginRepository.findAll();
-	}
-	
 	public User findById(long id) {
 		return loginRepository.findById(id).orElse(null);
 	}
