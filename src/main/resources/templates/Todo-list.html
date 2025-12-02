@@ -73,7 +73,7 @@
 				
 				<td th:if="${account.userId == todo.userId}">
 					<form method="post" th:action="@{/todo/delete/{id}(id=*{id})}" >
-						<button>削除</button>
+						<button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
 					</form>
 				</td>
 				<td th:unless="${account.userId == todo.userId}">
@@ -137,7 +137,7 @@
 					</td>
 					 <td th:if="${account.userId == todo.userId}">
 					 	<form method="post" th:action="@{/todo/delete/{id}(id=*{id})}"  th:object="${todo}">
-						 	<button>削除</button>
+						 	<button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
 						</form>
 					</td>
 					<td th:unless="${account.userId == todo.userId}">
